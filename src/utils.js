@@ -1,9 +1,8 @@
-import randomwords from "random-words";
+import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
 export const generateSecret = () => {
-  const word = randomwords({ excactly: 2 });
-  return `${words[0]} ${words[1]}`;
+  return `${Math.floor(100000 + Math.random() * 900000)}`;
 };
 
 export const sendSecretEmail = (address, secretWord) => {
@@ -26,4 +25,8 @@ export const sendSecretEmail = (address, secretWord) => {
   transport.sendMail(email, (err, info) => {
     console.log(err, info);
   });
+};
+
+export const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET);
 };
