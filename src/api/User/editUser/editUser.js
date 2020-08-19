@@ -5,13 +5,13 @@ export default {
     editUser: (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
 
-      const { username, email, fistName, lastName, bio } = args;
+      const { username, email, firstName, lastName, bio, avatar } = args;
 
       const { user } = request;
 
       return prisma.updateUser({
         where: { id: user.id },
-        data: { username, email, firstName, lastName, bio },
+        data: { username, email, firstName, lastName, bio, avatar },
       });
     },
   },
