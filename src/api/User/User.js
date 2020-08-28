@@ -8,6 +8,7 @@ export default {
     likes: ({ id }) => prisma.user({ id }).likes(),
     comments: ({ id }) => prisma.user({ id }).comments(),
     rooms: ({ id }) => prisma.user({ id }).rooms(),
+    postCount: ({ id }) => prisma.postsConnection({ where: { user: { id } } }),
     followingCount: ({ id }) =>
       prisma
         .usersConnection({ where: { followers_some: { id } } })
